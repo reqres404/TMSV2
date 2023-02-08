@@ -42,9 +42,14 @@ header a{
 /* HomePage */
 
 .home{
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  /* display: grid; */
+  /* align-items: center; */
+  /* grid-template-columns: 3fr 1fr; */
+  display: flex;
+  flex-direction: column;
   gap: 100px;
+  padding: 10rem;
+  padding-top: 0;
 }
 .book{
   display: grid;
@@ -109,6 +114,7 @@ form button{
   border: 0;
   color: #fff;
   padding: 10px;  
+
 }
 div.error{
   padding: 10px;
@@ -116,14 +122,12 @@ div.error{
   border: 1px solid var(--error);
   border-radius: 4px;
   margin: 20px 0;
+  color: black;
 }
 
 input.error{
   border:1px solid var(--error)
 }
-
-
-
 
 .loginform{
   padding: 10px;
@@ -135,13 +139,15 @@ input.error{
   box-sizing: border-box;
   margin: auto;
   width: 40%;
-  /* border: 3px solid green; */
+  border: 3px solid rgb(26, 171, 130);
   padding: 10px;
 }
 .book-button{
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: #e7195a;
+  margin-right:0.5rem ;
+  font-family: "Poppins";
+  background-color: #1aac83;
   padding: 10px;
   border-radius: 5%;
   color: white;
@@ -151,4 +157,32 @@ input.error{
 .book-button:hover{
   background-color: #9d0938;
   transform:scale(1.1) ;
+}
+@media (max-width: 600px) {
+
+  .loginform{
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: auto;
+    width: 70%;
+    border: 3px solid #1aac83;
+    padding: 10px;
+  }
+  .home{
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1rem;
+    padding-top: 0;
+  }
+  .register{
+    width: 100%;
+  }
+  .running-bus{
+    width:50%
+  }
 }

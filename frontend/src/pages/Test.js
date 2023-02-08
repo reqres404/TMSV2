@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AdminPanel from '../components/AdminPanel/AdminPanel';
 
 const Test =()=>{
   const [userName, setUserName] = useState('');
@@ -18,43 +19,7 @@ const Test =()=>{
 
   return (
     <div>
-    {!valid &&
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        id="userName"
-        name="userName"
-        value={userName}
-        placeholder="UserName"
-        onChange={(event) =>
-          setUserName(event.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <input
-        type="password"
-        id="password"
-        name="password"
-        value={password}
-        placeholder="Password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
-      <button type="submit">Submit</button>
-
-      <br />
-      <br />
-    </form>
-    }
-    {valid && 
-        <div>
-            <h1>Well this works</h1>
-        </div>
-    }
+      <AdminPanel/>
     </div>
   );
 }

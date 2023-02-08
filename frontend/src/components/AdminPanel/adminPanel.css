@@ -1,0 +1,72 @@
+.admin-panel{
+    padding: 0.5rem;
+    justify-content: center;
+    display:flex ;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.panel-container h1{
+    font-size:2rem ;
+}
+.students-input-contianer{
+    
+    display: flex;
+    flex-direction: row;   
+    gap: 1rem;
+    align-items: baseline;
+}
+.students-input-field{
+    width:10rem;
+}
+.students-input-button{
+    width: 5rem;
+    height:2.2rem ;
+}
+.panel-container{
+    
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    
+}
+
+.total-occupancy{
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    padding:15px;
+    border: solid 2px rgb(26, 171, 130);
+}
+
+.total-buses{
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    border: solid 2px rgb(26, 171, 130);
+}
+.total-booked-buses{
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    border: solid 2px rgb(26, 171, 130);
+}
+.progressBar{
+    background-color: #f1f1f1;
+    border: solid 5px #1aac83;
+    max-width: 100%;
+}
+@media (max-width: 600px){
+    .panel-container{
+        justify-content: center;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-right: 30px;
+    }
+
+}

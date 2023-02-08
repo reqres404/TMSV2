@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 const BusesDetails = ({ bus }) => {
   const { dispatch } = useBusesContext();
-  const { available } = bus;
+  const { available , contract} = bus;
 
   const handleClick = async () => {
     const response = await fetch("/api/buses/" + bus._id, {
@@ -14,7 +14,7 @@ const BusesDetails = ({ bus }) => {
       dispatch({ type: "DELETE_BUS", payload: json });
     }
   };
-  const handleUpdate = () => {
+  const handleAvailable = () => {
     const isAvailable = available;
     const updateAvailable = {
       available: !isAvailable,
@@ -27,6 +27,19 @@ const BusesDetails = ({ bus }) => {
       body: JSON.stringify(updateAvailable),
     }).then((r) => r.json());
   };
+  const handleOwnership = () => {
+    const isOwned = contract;
+    const updateOwnership = {
+      contract: !isOwned,
+    };
+    fetch("/api/buses/" + bus._id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateOwnership),
+    }).then((r) => r.json());
+  };
   useEffect(() => {
     const fetchBus = async () => {
       const response = await fetch("/api/buses");
@@ -37,16 +50,27 @@ const BusesDetails = ({ bus }) => {
       }
     };
     fetchBus();
-  }, [handleUpdate]);
+  }, [handleOwnership,handleAvailable]);
 
   return (
     <div className="bus-details">
-      {!available && (
-        <h3 style={{ color: "red", textAlign: "center" }}>Booked</h3>
-      )}
+      
+      
       <h4>{bus.driver}</h4>
+      <h4>
+        <div style={{display: "flex" , justifyContent:"start", gap:"1rem"}}>
+        {!bus.contract && <p style={{color:"red"}}>Owned </p>}
+        {!available && (<p style={{ color: "red"}}>Booked</p>)}
+      </div>
+      </h4>
       <p>
-        <strong>ETA :</strong> {bus.time}
+        <strong>Date :</strong> {bus.time}
+      </p>
+      <p>
+        <strong>Route :</strong> {bus.route}
+      </p>
+      <p>
+        <strong>Occupancy :</strong> {bus.occupancy}
       </p>
       <p>
         <strong> license plate : </strong> {bus.liplate}
@@ -55,14 +79,22 @@ const BusesDetails = ({ bus }) => {
         <strong> phone : </strong> {bus.phone}
       </p>
       
-    {!available&&
-      <button className="book-button" onClick={handleUpdate}>Unbook</button>
-    }
       <p>{formatDistanceToNow(new Date(bus.createdAt), { addSuffix: true })}</p>
-      <span className="material-symbols-outlined" onClick={handleClick}>
+      {available?
+    <button className="book-button" onClick={handleAvailable}>Book</button>:
+    <button className="book-button" onClick={handleAvailable}>Unbook</button>
+    }
+    {contract?
+    <button className="book-button" onClick={handleOwnership}>Make Owned</button>:
+    <button className="book-button" onClick={handleOwnership}>Unown</button>
+    }
+      <span className="material-symbols-outlined" onClick={handleClick} style={{backgroundColor:"rgb(222, 116, 116)" , color:"rgb(157, 9, 56)"}}>
         delete
       </span>
+      <br/>
+
     </div>
+
   );
 };
 

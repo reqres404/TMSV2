@@ -21,25 +21,30 @@ const getBus = async(req,res)=>{
 }
 //create a new workout
 const createBus= async(req,res)=>{
-    const{driver,time,liplate,phone} = req.body
+    const{driver,route,occupancy,time,date,liplate,phone} = req.body
 
-    // let emptyFields = []
+    let emptyFields = []
 
-    // if(!title){
-    //     emptyFields.push('title')
-    // }
-    // if(!load){
-    //     emptyFields.push('load')
-    // }
-    // if(!reps){
-    //     emptyFields.push('reps')
-    // }
-    // if(emptyFields.length>0){
-    //     return res.status(400).json({error:"Please fill all fields",emptyFields})
-    // }
+    if(driver.length<2){
+        emptyFields.push("Name should have more than 2 characters\n")
+    }
+    if(!route){
+        emptyFields.push("Route Field is Invalid")
+    }
+    if(liplate.length!==11){
+        emptyFields.push('Invalid License  Plate')
+    }
+    if(phone.length!==10){
+        emptyFields.push('Phone Number is Invalid')
+    }
+    if(emptyFields.length>0){
+        for(i=0; i<emptyFields.length; i++){
+            return res.status(400).json({error:emptyFields[i],emptyFields})
+        }
+    }
     //add doc to db
     try {
-        const bus = await Bus.create({driver,time,liplate,phone})
+        const bus = await Bus.create({driver,route,occupancy,time,liplate,phone,date})
         res.status(200).json(bus)
     } catch (error) {
         res.status(400).json({error:error.message})

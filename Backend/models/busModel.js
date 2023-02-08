@@ -8,7 +8,19 @@ const busSchema = new Schema({
         type:String,
         required:true,
     },
+    route:{
+        type:String,
+        required:true,
+    },
+    occupancy:{
+        type:Number,
+        required:true,
+    },
     time:{
+        type:String,
+        required:true
+    },
+    date:{
         type:String,
         required:true
     },
@@ -19,6 +31,11 @@ const busSchema = new Schema({
     phone:{
         type:Number,
         required:true
+    },
+    contract:{
+        type:Boolean,
+        default:true,
+        required:false
     },
     available :{
         type:Boolean,

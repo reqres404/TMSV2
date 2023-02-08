@@ -1,17 +1,21 @@
+import { setDate } from "date-fns";
 import { useState } from "react";
 import { useBusesContext } from "../hooks/useBusesContext";
 const BusForm = () => {
   const { dispatch } = useBusesContext();
   const [driver, setDriver] = useState("");
+  const [route, setRoute] = useState("");
+  const [occupancy, setOccupancy] = useState("");
   const [time, setTime] = useState("");
   const [phone, setPhone] = useState("");
   const [liplate, setLiplate] = useState("");
   const [error, setError] = useState("");
-  // const [emptyFields,setEmptyFields] = useState([])
+  const [date, setDate] = useState("");
+  const [emptyFields,setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const bus = { driver, time, phone, liplate };
+    const bus = { driver,route,occupancy, time, date,phone, liplate };
 
     const response = await fetch("/api/buses", {
       method: "POST",
@@ -28,11 +32,15 @@ const BusForm = () => {
     }
     if (response.ok) {
       setDriver("");
+      setRoute("");
+      setOccupancy("")
       setTime("");
+      setDate("");
       setLiplate("");
-      setPhone("");
+      setPhone("");      
       setError(null);
-      // setEmptyFields([])
+      setEmptyFields([])
+      
       console.log("New Bus Added");
       console.log(json);
       dispatch({ type: "CREATE_BUS", payload: json });
@@ -40,25 +48,51 @@ const BusForm = () => {
   };
   return (
     <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Bus</h3>
       <label>Driver Name</label>
       <input
         type="text"
+        placeholder="Name"
         onChange={(e) => setDriver(e.target.value)}
         value={driver}
         // className={emptyFields.includes('titles')?'error':''}
       />
 
-      <label>Time (date): </label>
+      <label>Route </label>
       <input
         type="text"
+        placeholder="Start-to-End"
+        onChange={(e) => setRoute(e.target.value)}
+        value={route}
+        // className={emptyFields.includes('titles')?'error':''}
+      />
+      <label>occupancy</label>
+      <input
+        type="number"
+        placeholder="No. of seats"
+        onChange={(e) => setOccupancy(e.target.value)}
+        value={occupancy}
+        // className={emptyFields.includes('titles')?'error':''}
+      />
+      <label>Time: </label>
+      <input
+        type="time"
+        placeholder="DD/MM/YYYY"
         onChange={(e) => setTime(e.target.value)}
         value={time}
+        // className={emptyFields.includes('load')?'error':''}
+      />
+      <label>Date: </label>
+      <input
+        type="date"
+        placeholder="DD/MM/YYYY"
+        onChange={(e) => setDate(e.target.value)}
+        value={date}
         // className={emptyFields.includes('load')?'error':''}
       />
 
       <label>License Plate: </label>
       <input
+        placeholder="MHXX XXXX"
         type="text"
         onChange={(e) => setLiplate(e.target.value)}
         value={liplate}
@@ -67,9 +101,11 @@ const BusForm = () => {
 
       <label>Phone: </label>
       <input
-        type="number"
+        type="tel"
+        placeholder="+91: "
         onChange={(e) => setPhone(e.target.value)}
         value={phone}
+
         // className={emptyFields.includes("reps") ? "error" : ""}
       />
 

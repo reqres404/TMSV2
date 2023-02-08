@@ -40,12 +40,21 @@ const BookDetails = ({ bus }) => {
         }
       <h4>{bus.driver}</h4>
       <p>
-        <strong>ETA :</strong> {bus.time}
+        <strong>Route :</strong> {bus.route}
+      </p>
+      <p>
+        <strong>Date :</strong> {bus.date}
+      </p>
+      <p>
+        <strong>Time :</strong> {bus.time}
+      </p>
+      <p>
+        <strong>Occupancy :</strong> {bus.occupancy}
       </p>
       <p>
         <strong> license plate : </strong> {bus.liplate}
       </p>
-      <p>
+      <p className="phone">
         <strong> phone : </strong> {bus.phone}
       </p>
       <p>{formatDistanceToNow(new Date(bus.createdAt), { addSuffix: true })}</p>
