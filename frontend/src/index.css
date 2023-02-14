@@ -126,7 +126,7 @@ div.error{
 }
 
 input.error{
-  border:1px solid var(--error)
+  border:1px solid red
 }
 
 .loginform{
@@ -182,7 +182,8 @@ input.error{
   .register{
     width: 100%;
   }
-  .running-bus{
-    width:50%
-  }
+
+}
+span{
+  color :#1aac83
 }

@@ -1,5 +1,9 @@
 const Bus = require('../models/busModel')
+const User = require('../models/userModel')
 const mongoose = require('mongoose')
+
+
+
 //get all workouts
 const getBuses = async(req,res)=>{
     const buses = await Bus.find({}).sort({createdAt:-1})
@@ -9,7 +13,7 @@ const getBuses = async(req,res)=>{
 const getBus = async(req,res)=>{
     const { id } = req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error:"No such workout"})
+        return res.status(404).json({error:"No such bus"})
     }
     const bus = await Workout.findById(id)
 
@@ -28,7 +32,7 @@ const createBus= async(req,res)=>{
     if(driver.length<2){
         emptyFields.push("Name should have more than 2 characters\n")
     }
-    if(!route){
+    if(!route.includes("-to-")){
         emptyFields.push("Route Field is Invalid")
     }
     if(liplate.length!==11){
@@ -42,6 +46,7 @@ const createBus= async(req,res)=>{
             return res.status(400).json({error:emptyFields[i],emptyFields})
         }
     }
+    
     //add doc to db
     try {
         const bus = await Bus.create({driver,route,occupancy,time,liplate,phone,date})
@@ -51,6 +56,7 @@ const createBus= async(req,res)=>{
     }
 
 }
+
 //delete a workout
 const deleteBus = async(req,res)=>{
     const {id} = req.params
@@ -80,12 +86,30 @@ const updateBus= async(req,res)=>{
     res.status(200).json(bus)
 
 }
+//USER 
 
+//create 
+const createUser = async(req,res)=>{
+    const {username,password} = req.body
+    try{
+        const user = await User.create({username,password})
+        res.status(200).json({user})
+    }
+    catch(error){
+        res.status(400).json({error:error.message})
+    }
+}
+const getUsers = async(req,res)=>{
+    const users = await User.find({}).sort({createdAt:-1})
+    res.status(200).json(users)
+}
 
 module.exports={
     createBus,
     getBus,
     getBuses,
     deleteBus,
-    updateBus
+    updateBus,
+    createUser,
+    getUsers
 }

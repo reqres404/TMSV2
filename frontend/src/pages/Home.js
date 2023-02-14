@@ -4,10 +4,10 @@ const Home = () => {
 
   return (
     <div>
-      <h1 style={{textAlign:"center"}}>Welcome TO TMS</h1>
-      <p style={{textAlign:"center"}}>One stop solution for all School/College bus management needs </p>
+      <h1 style={{textAlign:"center"}}><span>Welcome TO TMS</span></h1>
+      <p style={{textAlign:"center", fontSize:"22px"}}>One stop solution for all School/College bus management needs </p>
       <div className="running-bus">
-      <Bus />
+        <Bus/>
       </div>
       
     </div>

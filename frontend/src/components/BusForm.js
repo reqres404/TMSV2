@@ -1,6 +1,7 @@
 import { setDate } from "date-fns";
 import { useState } from "react";
 import { useBusesContext } from "../hooks/useBusesContext";
+
 const BusForm = () => {
   const { dispatch } = useBusesContext();
   const [driver, setDriver] = useState("");
@@ -12,7 +13,13 @@ const BusForm = () => {
   const [error, setError] = useState("");
   const [date, setDate] = useState("");
   const [emptyFields,setEmptyFields] = useState([])
-
+  const [otp, setOtp] = useState()
+  const [getOtp,setGetOtp] = useState(false)
+  const handleOtp = (e) =>{
+    e.preventDefault()
+    setGetOtp(true)
+    console.log("Otp Submitted")
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const bus = { driver,route,occupancy, time, date,phone, liplate };
@@ -108,8 +115,21 @@ const BusForm = () => {
 
         // className={emptyFields.includes("reps") ? "error" : ""}
       />
-
-      <button>Add Bus</button>
+      {phone.length==10 && !getOtp? <button onClick={handleOtp}>SendOTP</button>:<></>}
+      {getOtp &&
+      <div> 
+        <label>OTP</label>
+        <input
+        type="tel"
+        placeholder="OTP"
+        onChange={(e) => setOtp(e.target.value)}
+        value={otp}
+        // className={emptyFields.includes("reps") ? "error" : ""}
+      />
+      </div>
+      }
+      
+      {otp==1111&&<button>Add Bus</button>}
       {error && <div className="error">{error}</div>}
     </form>
   );

@@ -1,26 +1,10 @@
-import { useState } from 'react';
-import AdminPanel from '../components/AdminPanel/AdminPanel';
+import Auth from "../components/Auth";
 
-const Test =()=>{
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [valid,setValid] = useState(false)
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    if(userName==="admin" && password==="admin"){
-        setValid(true)
-    }
-
-    userName('');
-    setUserName('');
-  };
-
-  return (
+const Test = ()=>{
+  return(
     <div>
-      <AdminPanel/>
+      <Auth/>
     </div>
-  );
+  )
 }
 export default Test
