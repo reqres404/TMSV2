@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:4000",
+  "proxy": "http://ec2-54-144-249-158.compute-1.amazonaws.com",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
