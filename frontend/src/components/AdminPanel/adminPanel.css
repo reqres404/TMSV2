@@ -6,11 +6,11 @@
     align-items: center;
     
 }
+
 .panel-container h1{
     font-size:2rem ;
 }
 .students-input-contianer{
-    
     display: flex;
     flex-direction: row;   
     gap: 1rem;
@@ -40,6 +40,11 @@
     align-items: center;
     padding:15px;
     border: solid 2px rgb(26, 171, 130);
+    transition: 0.4s;
+}
+.total-occupancy:hover{
+    background-color: rgb(23, 23, 23);
+    transform: scale(1.05);
 }
 
 .total-buses{
@@ -47,12 +52,22 @@
     width: 100%;
     padding: 15px;
     border: solid 2px rgb(26, 171, 130);
+    transition: 0.4s;
+}
+.total-buses:hover{
+    background-color: rgb(23, 23, 23);
+    transform: scale(1.05);
 }
 .total-booked-buses{
     text-align: center;
     width: 100%;
     padding: 15px;
     border: solid 2px rgb(26, 171, 130);
+    transition: 0.4s;
+}
+.total-booked-buses:hover{
+    background-color: rgb(23, 23, 23);
+    transform: scale(1.05);
 }
 .progressBar{
     background-color: #f1f1f1;

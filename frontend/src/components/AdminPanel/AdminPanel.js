@@ -11,11 +11,23 @@ const AdminPanel = ({buses}) => {
     const [totalBookedBuses, setTotalBookedBuses] = useState(0)
     const [totalUnbookedBuses, setTotalUnbookedBuses] = useState(0)
     const [totalNumberOfSeats,setTotalNumberOfSeats] = useState(null)
+    const [seatsAtR1,setSeatsAtR1] = useState(0)
+    const [seatsAtR2,setSeatsAtR2] = useState(0)
+    const [seatsAtR3,setSeatsAtR3] = useState(0)
+    const [seatsAtR4,setSeatsAtR4] = useState(0)
+
+
+
+
     let totalbook=0
     let totalUnbook = 0
     let seatsNeeded = 0;
     let totalAvailableSeats =0;
     let showSeats;
+    let availableSeatsAtR1 = 0
+    let availableSeatsAtR2 = 0
+    let availableSeatsAtR3 = 0
+    let availableSeatsAtR4 = 0
     
     useEffect(()=>{
         buses.map((bus)=>{
@@ -32,6 +44,32 @@ const AdminPanel = ({buses}) => {
             }
             else{
                 totalUnbook++
+            }
+        })
+
+        buses.map((bus)=>{
+            if(bus.available && bus.route == "Narhe-to-Pimpri"){
+                availableSeatsAtR1 = availableSeatsAtR1+bus.occupancy
+                setSeatsAtR1(availableSeatsAtR1)
+            }
+            
+            if(bus.available && bus.route == "Narhe-to-Hinjewadi"){
+                availableSeatsAtR2 = availableSeatsAtR2+bus.occupancy
+                setSeatsAtR2(availableSeatsAtR2)
+            
+            }
+            if(bus.available && bus.route == "Narhe-to-Pimpri"){
+                availableSeatsAtR3 = availableSeatsAtR3+bus.occupancy
+                setSeatsAtR3(availableSeatsAtR3)
+            
+            }
+            if(bus.available && bus.route == "Narhe-to-Pimpri"){
+                availableSeatsAtR4 = availableSeatsAtR4+bus.occupancy
+                setSeatsAtR4(availableSeatsAtR4)
+            
+            }
+            else{
+                console.log("error")
             }
         })
         
@@ -94,24 +132,28 @@ const AdminPanel = ({buses}) => {
                     <h3>Total Occupancy : </h3>  
                     <h1>{totalSeats}%</h1>
                     <h1><div className="progressBar" style={{width:`${totalSeats}%`}}></div></h1>  
-                    <h3>Total Students: <strong>{totalStudents}</strong></h3>
+                    <h3>Total Seats required: <strong>{totalStudents}</strong></h3>
                     <h3>Available Seats: <strong>{totalNumberOfSeats}</strong></h3>
-                    <h3>Seats Needed : <strong>{extraSeats}</strong></h3>
+                    <h3>Extra Seats Needed : <strong>{extraSeats}</strong></h3>
                 </div>
                 <div className="total-buses">
                     <h3>Total buses:</h3>
-                    <h2>{numberOfContractedBuses+numberOfOwnedBuses}</h2>
+                    <span><h2>{numberOfContractedBuses+numberOfOwnedBuses}</h2></span>
                     <h3>Owned Buses:</h3> 
-                    <h2>{numberOfOwnedBuses}</h2>
+                    <span><h2>{numberOfOwnedBuses}</h2></span>
                     <h3>Contracted Buses:</h3>
-                    <h2>{numberOfContractedBuses}</h2>
+                    <span><h2>{numberOfContractedBuses}</h2></span>
                     </div>
                 <div className="total-booked-buses">
-                    <h3>Total Reserved Buses:</h3>
-                    <h1>{totalBookedBuses}</h1>
+                    <h3>Total Reserved Buses: {totalBookedBuses}</h3>
+                    <h3>Total Available Buses:{totalUnbookedBuses}</h3>
                     <br/>
-                    <h3>Total Available Buses:</h3>
-                    <h1>{totalUnbookedBuses}</h1>
+                    <h4>Pimpri available seats : <span>{seatsAtR1}</span></h4>
+                    <h4>Hinjewadi available seats : <span>{seatsAtR2}</span></h4>
+                    <h4>Balewadi available seats : <span>{seatsAtR3}</span></h4>
+                    <h4>Katraj available seats : <span>{seatsAtR4}</span></h4>
+                    
+                    
                 </div>
             </div>
         </div>

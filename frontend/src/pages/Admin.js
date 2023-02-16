@@ -11,7 +11,6 @@ const Admin = () => {
     const [password, setPassword] = useState("");
     const [valid, setValid] = useState(false);
 
-
     useEffect(() => {
         const fetchBus = async () => {
             const response = await fetch("/api/buses");
@@ -30,27 +29,26 @@ const Admin = () => {
         if (userName == "admin" && password == "admin") {
             setValid(true);
         }
+        else{
+            alert("Wrong Credentials entered")
+        }
 
         setUserName("");
-        setPassword("")
+        setPassword("");
     };
 
     return (
         <div>
-            
             {valid && (
-                
-                <div className="home">    
-                
+                <div className="home">
                     <div className="buses">
-                    <h1 style={{textAlign:"center"}}>Admin Panel</h1>
-                    <AdminPanel buses={buses}/>
+                        <h1 style={{ textAlign: "center" }}>Admin Panel</h1>
+                        <AdminPanel buses={buses} />
                         {buses &&
                             buses.map((bus) => (
                                 <BusesDetails key={bus._id} bus={bus} />
                             ))}
                     </div>
-                    
 
                     {/* <BusForm /> */}
                 </div>

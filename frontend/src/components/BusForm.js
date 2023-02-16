@@ -13,7 +13,7 @@ const BusForm = () => {
     const [error, setError] = useState("");
     const [date, setDate] = useState("");
     const [emptyFields, setEmptyFields] = useState([]);
-    const [otp, setOtp] = useState();
+    const [otp, setOtp] = useState(null);
     const [getOtp, setGetOtp] = useState(false);
     const handleOtp = (e) => {
         e.preventDefault();
@@ -45,10 +45,10 @@ const BusForm = () => {
             setDate("");
             setLiplate("");
             setPhone("");
+            setOtp("")
             setError(null);
             setEmptyFields([]);
-
-            console.log("New Bus Added");
+            alert("Buses added successfully!")
             console.log(json);
             dispatch({ type: "CREATE_BUS", payload: json });
         }
@@ -65,11 +65,11 @@ const BusForm = () => {
             />
             <label>Route </label>
             <select name="routes" id="route-select" value={route} onChange={(e) => setRoute(e.target.value)}>
-                <option value="">--Please choose a route--</option>
-                <option value="Nhare-to-Pimpri" >Nhare-to-Pimpri</option>
-                <option value="Nhare-to-Hinjewadi">Nhare-to-Hinjewadi</option>
-                <option value="Nhare-to-Balewadi">Nhare-to-Balewadi</option>
-                <option value="Nhare-to-Katraj">Nhare-to-Katraj</option>
+                <option value="">Please choose a route</option>
+                <option value="Narhe-to-Pimpri" >Narhe-to-Pimpri</option>
+                <option value="Narhe-to-Hinjewadi">Narhe-to-Hinjewadi</option>
+                <option value="Narhe-to-Balewadi">Narhe-to-Balewadi</option>
+                <option value="Narhe-to-Katraj">Narhe-to-Katraj</option>
             </select>{" "}
             {/* <input
         type="text"

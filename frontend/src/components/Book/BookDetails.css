@@ -6,7 +6,11 @@
     position: relative;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
     width: 50%;
+    transition: 0.4s;
   }
+.book-details:hover{
+  transform: scale(1.04);
+}
   .book-details h4{
     margin: 0 0 10px 0;
     font-size: 1.2em;

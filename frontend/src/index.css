@@ -6,6 +6,7 @@
   --primary:#1aac83;
   --error:#e7195a;
 }
+
 body{
   background: #000000;
   margin:0;
@@ -63,7 +64,12 @@ header a{
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  transition: 0.4s;
 }
+.bus-details:hover{
+  transform: scale(1.05);
+}
+
 .bus-details h4{
   margin: 0 0 10px 0;
   font-size: 1.2em;
@@ -160,10 +166,67 @@ input.error{
 }
 select {
   font-size: 0.9rem;
-  padding: 2px 5px;
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+}
+.book-seats-form-input{
+  background-color: #1aac8343;
+  border:solid 2px #006936;
+  color: #000000;
+  width: 50%;
+  padding: 5px;
+}
+.book-seats-form{
+  display: flex;
+  flex-direction: row;   
+  gap: 1rem;
+  align-items: baseline;
+  width: 40%;
+}
+.book-buttons{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.book-seats-button{  
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  transition: 0.4s;
+
+}
+.book-seats-button:hover{
+  background-color: #06936b;
+  transform: scale(1.1);
+  border-radius: 10px;
+}
+
+.book-all{
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;  
+  transition: 0.4s;
+}
+.book-all:hover{
+  background-color: #06936b;
+  transform: scale(1.1);
+  border-radius: 10px;
+}
+@media (max-width:1080px){
+
+  
 }
 @media (max-width: 600px) {
 
+  .book-seats-form{
+    width: 100%;
+  }
   .loginform{
     padding: 10px;
     margin-top: 10px;
@@ -186,6 +249,21 @@ select {
   .register{
     width: 100%;
   }
+  /* .book-seats-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .book-seats-form-input{
+    width: 100%;
+  } */
+  .book-buttons{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
 
 }
 span{

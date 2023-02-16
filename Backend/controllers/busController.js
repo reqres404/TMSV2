@@ -32,6 +32,10 @@ const createBus= async(req,res)=>{
     // if(!route.includes("-to-")){
     //     emptyFields.push("Route Field is Invalid")
     // }
+    if(occupancy>120){
+        emptyFields.push('Please enter valid occupancy')
+    }
+    
     if(liplate.length!==11){
         emptyFields.push('Invalid License  Plate')
     }
