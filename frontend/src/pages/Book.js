@@ -20,8 +20,11 @@ const Book = () => {
         fetchBus();
     }, [dispatch]);
     const handleSubmit = () => {
-        if (user == "user1" && pass == "pass1") {
+        if (user === "user1" && pass === "pass1") {
             setUserAuth(true);
+        }
+        else if(user === "user2" && pass === "pass2"){
+            setUserAuth(true)
         }
         else{
             alert("Wrong Credentials entered")
@@ -63,7 +66,7 @@ const Book = () => {
                     <div>
                         {buses &&
                             buses.map((bus) => (
-                                <BookDetails key={bus._id} bus={bus} />
+                                <BookDetails user={user} key={bus._id} bus={bus} />
                             ))}
                     </div>
                 )}

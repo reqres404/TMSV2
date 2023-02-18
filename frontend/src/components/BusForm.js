@@ -118,7 +118,7 @@ const BusForm = () => {
                 value={phone}
                 // className={emptyFields.includes("reps") ? "error" : ""}
             />
-            {phone.length == 10 && !getOtp ? (
+            {phone.length === 10 && !getOtp ? (
                 <button onClick={handleOtp}>SendOTP</button>
             ) : (
                 <></>
@@ -135,7 +135,7 @@ const BusForm = () => {
                     />
                 </div>
             )}
-            {otp == 1111 && <button>Add Bus</button>}
+            {otp ==1111&& <button>Add Bus</button>}
             {error && <div className="error">{error}</div>}
         </form>
     );

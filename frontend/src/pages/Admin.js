@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useBusesContext } from "../hooks/useBusesContext";
 //components
 import BusesDetails from "../components/BusDetails";
-import BusForm from "../components/BusForm";
 import AdminPanel from "../components/AdminPanel/AdminPanel";
 
 const Admin = () => {
@@ -26,7 +25,7 @@ const Admin = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (userName == "admin" && password == "admin") {
+        if (userName === "admin" && password === "admin") {
             setValid(true);
         }
         else{

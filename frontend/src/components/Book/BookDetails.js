@@ -3,24 +3,30 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import "./BookDetails.css";
 import { useEffect, useState } from "react";
 
-const BookDetails = ({ bus }) => {
-
-    const [seatsEnter, setSeatsEnter] = useState(null);
+const BookDetails = ({ bus,user }) => {
+    
+    const [seatsEnter, setSeatsEnter] = useState(0);
+    const [uwb,setUwb] = useState("")
+    const[isUpdate,setIsUpdate]=useState(true)
+    const[isSeatNum,setIsSeatSum] = useState(true)
     const { dispatch } = useBusesContext();
-    const { available, occupancy } = bus;
+    const { available, occupancy,userBooked} = bus;
+    
     const handleUpdate = () => {
+        console.log(user)
+        setIsUpdate(!isUpdate)
         const isAvailable = available;
-
         fetch("/api/buses/" + bus._id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ available: !isAvailable }),
+            body: JSON.stringify({ available: !isAvailable,userBooked:user }),
         }).then((r) => r.json());
     };
     //Code for updating
     const handleSeatNum = (e) => {
+        setIsSeatSum(!isSeatNum)
         e.preventDefault();
         if (seatsEnter > bus.occupancy || seatsEnter < 0 || seatsEnter==null) {
             alert("please enter valid amount of seats");
@@ -47,15 +53,20 @@ const BookDetails = ({ bus }) => {
             }
         };
         fetchBus();
+        setSeatsEnter("")
         
-    }, [handleUpdate, handleSeatNum]);
+    }, [isUpdate,isSeatNum]);
 
 
     return (
         <div className="book-details">
             {!available && (
-                <h3 style={{ color: "red", textAlign: "center" }}>Booked</h3>
+                <h3 style={{ color: "red", textAlign: "center" }}>Booked {bus.userBooked}</h3>
             )}
+            {!available &&
+                <></>
+                ||<></>
+            }
             <h4>{bus.driver}</h4>
             <p>
                 <strong>Route :</strong> {bus.route}

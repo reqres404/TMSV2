@@ -41,6 +41,11 @@ const busSchema = new Schema({
         type:Boolean,
         default:true,
         required:false
+    },
+    userBooked:{
+        type:String,
+        default:" ",
+        required:false
     }
 },{timestamps:true})
 

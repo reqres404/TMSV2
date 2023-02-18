@@ -21,9 +21,7 @@ const AdminPanel = ({buses}) => {
 
     let totalbook=0
     let totalUnbook = 0
-    let seatsNeeded = 0;
     let totalAvailableSeats =0;
-    let showSeats;
     let availableSeatsAtR1 = 0
     let availableSeatsAtR2 = 0
     let availableSeatsAtR3 = 0
@@ -68,9 +66,7 @@ const AdminPanel = ({buses}) => {
                 setSeatsAtR4(availableSeatsAtR4)
             
             }
-            else{
-                console.log("error")
-            }
+
         })
         
         buses.map((bus)=>{

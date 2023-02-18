@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useBusesContext } from "../hooks/useBusesContext";
 //components
-import BusesDetails from "../components/BusDetails";
+
 import BusForm from "../components/BusForm";
 
 const Register = () => {
-  const{buses,dispatch} = useBusesContext()
+  const{dispatch} = useBusesContext()
   useEffect(() => {
     const fetchBus = async () => {
       const response = await fetch("/api/buses");

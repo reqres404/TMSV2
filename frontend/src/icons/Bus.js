@@ -1,4 +1,3 @@
-import lottie from "lottie-web";
 import Lottie from 'react-lottie';
 import bus from './bus.json'
 

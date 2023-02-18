@@ -1,9 +1,11 @@
 import { useBusesContext } from "../hooks/useBusesContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 const BusesDetails = ({ bus }) => {
+  const [isOwner,setIsOwner] = useState(true)
+  const [isAvailable,setIsAvailable] = useState(true)
   const { dispatch } = useBusesContext();
-  const { available , contract} = bus;
+  const { available , contract,userBooked} = bus;
 
   const handleClick = async () => {
     const response = await fetch("/api/buses/" + bus._id, {
@@ -15,42 +17,43 @@ const BusesDetails = ({ bus }) => {
     }
   };
   const handleAvailable = () => {
-    const isAvailable = available;
-    const updateAvailable = {
-      available: !isAvailable,
-    };
+    setIsAvailable(!isAvailable)
     fetch("/api/buses/" + bus._id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updateAvailable),
+      body: JSON.stringify({available:!available,userBooked:"Admin"}),
     }).then((r) => r.json());
   };
   const handleOwnership = () => {
     const isOwned = contract;
-    const updateOwnership = {
-      contract: !isOwned,
-    };
+    setIsOwner(!isOwner)
     fetch("/api/buses/" + bus._id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updateOwnership),
+      body: JSON.stringify({contract: !isOwned}),
     }).then((r) => r.json());
   };
   useEffect(() => {
     const fetchBus = async () => {
+      try{
       const response = await fetch("/api/buses");
       const json = await response.json();
-
+      
       if (response.ok) {
         dispatch({ type: "SET_BUS", payload: json });
       }
+      
+    }
+    catch(error){
+      console.log(error.message)
+    }
     };
-    fetchBus();
-  }, [handleOwnership,handleAvailable]);
+    fetchBus();    
+  }, [isOwner,isAvailable]);
 
   return (
     <div className="bus-details">
@@ -60,7 +63,7 @@ const BusesDetails = ({ bus }) => {
       <h4>
         <div style={{display: "flex" , justifyContent:"start", gap:"1rem"}}>
         {!bus.contract && <p style={{color:"red"}}>Owned </p>}
-        {!available && (<p style={{ color: "red"}}>Booked</p>)}
+        {!available && (<p style={{ color: "red"}}>Booked by {bus.userBooked}</p>)}
       </div>
       </h4>
       <p>
