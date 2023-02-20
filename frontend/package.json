@@ -1,5 +1,5 @@
 {
-  "proxy": "http://34.238.52.197:4000",
+  "proxy": "http://107.23.103.160:4000",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,

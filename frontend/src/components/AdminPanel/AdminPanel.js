@@ -56,12 +56,12 @@ const AdminPanel = ({buses}) => {
                 setSeatsAtR2(availableSeatsAtR2)
             
             }
-            if(bus.available && bus.route == "Narhe-to-Pimpri"){
+            if(bus.available && bus.route == "Narhe-to-Balewadi"){
                 availableSeatsAtR3 = availableSeatsAtR3+bus.occupancy
                 setSeatsAtR3(availableSeatsAtR3)
             
             }
-            if(bus.available && bus.route == "Narhe-to-Pimpri"){
+            if(bus.available && bus.route == "Narhe-to-Katraj"){
                 availableSeatsAtR4 = availableSeatsAtR4+bus.occupancy
                 setSeatsAtR4(availableSeatsAtR4)
             

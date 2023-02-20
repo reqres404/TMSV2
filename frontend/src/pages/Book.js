@@ -26,6 +26,11 @@ const Book = () => {
         else if(user === "user2" && pass === "pass2"){
             setUserAuth(true)
         }
+        
+        else if(user === "user3" && pass === "pass3"){
+            setUserAuth(true)
+        }
+        
         else{
             alert("Wrong Credentials entered")
         }
