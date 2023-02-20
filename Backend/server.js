@@ -18,8 +18,7 @@ app.use("/api/buses", busRoutes);
 
 //connect to db
 mongoose.set('strictQuery', true);
-// mongoose.connect(process.env.MONGO_URI,)
-mongoose.connect(process.env.MONGO_URI,{tlsCAFile:`rds-ca-2019-root.pem`})
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`Connected to DB and Listening to ${process.env.PORT}!`);
