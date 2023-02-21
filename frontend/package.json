@@ -1,5 +1,4 @@
 {
-  "proxy": "https://tmsbackend.onrender.com",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -26,6 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://tmsbackend.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
