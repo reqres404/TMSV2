@@ -1,19 +1,19 @@
 const Bus = require('../models/busModel')
-const User = require('../models/userModel')
+
 const mongoose = require('mongoose')
 
-//get all workouts
+//get all buss
 const getBuses = async(req,res)=>{
     const buses = await Bus.find({}).sort({createdAt:-1})
     res.status(200).json(buses)
 }
-//get single workout
+//get single bus
 const getBus = async(req,res)=>{
     const { id } = req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error:"No such bus"})
     }
-    const bus = await Workout.findById(id)
+    const bus = await Bus.findById(id)
 
     if(!bus){
         return res.status(404).json({error:"Invalid Id"})
@@ -21,7 +21,7 @@ const getBus = async(req,res)=>{
     res.status(200).json(bus)
 
 }
-//create a new workout
+//create a new bus
 const createBus= async(req,res)=>{
     const{driver,route,occupancy,time,date,liplate,phone} = req.body
     let emptyFields = []
@@ -56,7 +56,7 @@ const createBus= async(req,res)=>{
     }
 
 }
-//delete a workout
+//delete a bus
 const deleteBus = async(req,res)=>{
     const {id} = req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -69,7 +69,7 @@ const deleteBus = async(req,res)=>{
     }
     res.status(200).json(bus)
 }
-//update a workout
+//update a bus
 const updateBus= async(req,res)=>{
     const {id} = req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -86,27 +86,11 @@ const updateBus= async(req,res)=>{
 
 }
 
-//create user 
-const createUser = async(req,res)=>{
-    const {username,password} = req.body
-    try{
-        const user = await User.create({username,password})
-        res.status(200).json({user})
-    }
-    catch(error){
-        res.status(400).json({error:error.message})
-    }
-}
-const getUsers = async(req,res)=>{
-    const users = await User.find({}).sort({createdAt:-1})
-    res.status(200).json(users)
-}
+
 module.exports={
     createBus,
     getBus,
     getBuses,
     deleteBus,
     updateBus,
-    createUser,
-    getUsers
 }

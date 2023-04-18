@@ -1,6 +1,9 @@
 
 import { useEffect, useState } from "react";
 import "./adminPanel.css";
+import PieChart from "../Pie/PieChart";
+import BarGraph from "../Bar/BarGraph"
+
 const AdminPanel = ({buses}) => {
     
     const [totalStudents, setTotalStudents] = useState(null);
@@ -109,6 +112,7 @@ const AdminPanel = ({buses}) => {
         // numberOfseats =0
         
     };
+    
     return (
         <div className="admin-panel">
             <form className="students-input-contianer" onSubmit={handleSubmit}>
@@ -126,8 +130,8 @@ const AdminPanel = ({buses}) => {
             <div className="panel-container">
                 <div className="total-occupancy">
                     <h3>Total Occupancy : </h3>  
-                    <h1>{totalSeats}%</h1>
-                    <h1><div className="progressBar" style={{width:`${totalSeats}%`}}></div></h1>  
+                    <PieChart totalSeats={totalSeats}/>
+                    
                     <h3>Total Seats required: <strong>{totalStudents}</strong></h3>
                     <h3>Available Seats: <strong>{totalNumberOfSeats}</strong></h3>
                     <h3>Extra Seats Needed : <strong>{extraSeats}</strong></h3>
@@ -144,12 +148,7 @@ const AdminPanel = ({buses}) => {
                     <h3>Total Reserved Buses: {totalBookedBuses}</h3>
                     <h3>Total Available Buses:{totalUnbookedBuses}</h3>
                     <br/>
-                    <h4>Pimpri available seats : <span>{seatsAtR1}</span></h4>
-                    <h4>Hinjewadi available seats : <span>{seatsAtR2}</span></h4>
-                    <h4>Balewadi available seats : <span>{seatsAtR3}</span></h4>
-                    <h4>Katraj available seats : <span>{seatsAtR4}</span></h4>
-                    
-                    
+                    <BarGraph routes={[seatsAtR1,seatsAtR2,seatsAtR3,seatsAtR4]} />
                 </div>
             </div>
         </div>

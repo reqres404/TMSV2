@@ -6,8 +6,6 @@ const {
   getBuses,
   deleteBus,
   updateBus,
-  createUser,
-  getUsers
 } = require("../controllers/busController");
 
 //GET all workouts
@@ -26,8 +24,6 @@ router.delete("/:id", deleteBus);
 router.patch("/:id", updateBus);
 
 //create user (admin)
-router.get("/register/users",getUsers)
-router.post("/register",createUser)
 
 
 module.exports = router;

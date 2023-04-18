@@ -5,7 +5,7 @@ import Admin from './pages/Admin';
 import Navbar from './components/Navbar/Navbar';
 import Book from './pages/Book';
 import Register from './pages/Register';
-import Test from './pages/Test'
+import Test from './pages/Test/Test'
 import './App.css'
 
 function App() {
