@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "proxy": "http://127.0.0.1:4000",
+=======
+  "proxy": "https://tmsbackend.onrender.com",
+>>>>>>> 30496650d672cc45414053392faa5f399c6c77bd
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -30,6 +34,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 30496650d672cc45414053392faa5f399c6c77bd
   "eslintConfig": {
     "extends": [
       "react-app",
