@@ -74,10 +74,10 @@ function Test() {
           </span>
           <span>Delete Users:</span>
           <button className="deleteButton" onClick={() => handleDelete(1)}>
-            Delete John
+            Delete user1 
           </button>
           <button className="deleteButton" onClick={() => handleDelete(2)}>
-            Delete Jane
+            Delete user
           </button>
           {error && (
             <span className="error">
@@ -93,7 +93,7 @@ function Test() {
       ) : (
         <div className="login">
           <form onSubmit={handleSubmit}>
-            <span className="formTitle">Lama Login</span>
+            <span className="formTitle">JWT Login</span>
             <input
               type="text"
               placeholder="username"
